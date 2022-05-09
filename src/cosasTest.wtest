@@ -1,2 +1,46 @@
-import camion.*
+
 import cosas.*
+
+describe "paquete de ladrillos" {
+	test "peso  y nivel de peligrosidad de paquetes de ladrillos" {
+	paqueteLadrillos.cantidad(15)
+	paqueteLadrillos.peso()
+	paqueteLadrillos.nivelDePeligrosidad()
+	assert.equals(30 , paqueteLadrillos.peso())
+	assert.that(paqueteLadrillos.nivelDePeligrosidad() == 2 )
+		
+	}
+}
+
+describe "bateria antiaerea"{
+	test "peso y nivel de peligrosidad de bateria antiaerea" {
+	bateriaAntiaerea.tieneMisiles()
+	
+	assert.equals(300 , bateriaAntiaerea.peso())
+	assert.equals(100 , bateriaAntiaerea.nivelDePeligrosidad())
+    }
+	   
+}
+describe "contenedor portuario" {
+	test "peso y nivel de peligrosidad de contenedor" {
+	contenedor.guardarObjeto(bateriaAntiaerea)
+	contenedor.guardarObjeto(paqueteLadrillos)
+	contenedor.guardarObjeto(arena)
+	paqueteLadrillos.cantidad(15)
+	paqueteLadrillos.peso()
+	arena.peso(150)
+	contenedor.peso()
+	
+	assert.equals(580 , contenedor.peso())
+	assert.equals(100 , contenedor.nivelDePeligrosidad())
+	}
+}
+describe "embalaje de seguridad" {
+	test "peso y nivel de peligrosdad de embalaje de seguridad"{
+	residuosRadioactivos.peso(30)
+	embalajeSeguridad.objetoEmbalado(residuosRadioactivos)
+	
+	assert.equals(30 , embalajeSeguridad.peso())
+	}
+}
+

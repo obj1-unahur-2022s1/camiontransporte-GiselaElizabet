@@ -1,3 +1,84 @@
 import camion.*
 import cosas.*
 
+describe  "carga y control de peso de camion" {
+
+	test  "pesos del camion"{
+	 arena.peso(150)
+	 bumblebee.seTransformaEn(robot)
+	 bateriaAntiaerea.tieneMisiles()	
+	 embalajeSeguridad.objetoEmbalado(paqueteLadrillos)
+	 paqueteLadrillos.cantidad(80)
+	 camion.hayAlgunoQuePesa(150)
+	 camion.tieneAlgoQuePesaEntre(50, 100)
+	 camion.cargar(bumblebee)
+	 camion.cargar(arena)	
+	 camion.cargar(embalajeSeguridad)
+	 camion.cargar(bateriaAntiaerea)
+	 
+	 assert.equals(true , camion.todoPesoPar())
+     assert.equals(2410 , camion.pesoTotal())
+     assert.equals(bumblebee ,  camion.cosaMasPesada())	
+     assert.that(camion.pesos()== [800 , 150 , 160 , 300])
+     assert.notThat(camion.excedidoDePeso())
+	 assert.that(camion.hayAlgunoQuePesa(150))
+	 assert.that(camion.tieneAlgoQuePesaEntre(50, 200))
+	 	 
+	}
+}
+	
+describe  "control  de peligrosidad del camion" {
+	
+	test "nivel de peligrosidad de cosas cargadas " {
+	 bumblebee.seTransformaEn(robot)
+	 bateriaAntiaerea.tieneMisiles()	
+	 embalajeSeguridad.objetoEmbalado(paqueteLadrillos)
+	 camion.cargar(bumblebee)
+	 camion.cargar(arena)	
+	 camion.cargar(embalajeSeguridad)
+	 camion.cargar(bateriaAntiaerea)
+	 camion.objetosQueSuperanPeligrosidad(20)
+	 camion.objetosMasPeligrososQue(arena)
+	 
+	 assert.equals(bateriaAntiaerea , camion.elDeNivel(100))                                          	  
+	 assert.that( camion.objetosQueSuperanPeligrosidad(20) == [bumblebee, bateriaAntiaerea])
+	 assert.that(camion.objetosMasPeligrososQue(arena) == [bumblebee  ,bateriaAntiaerea ])
+	 
+	 }
+}	
+
+describe "camion en ruta"{
+	test"circula en ruta"{
+	 arena.peso(150)
+	 bumblebee.seTransformaEn(robot)
+	 bateriaAntiaerea.tieneMisiles()	
+	 embalajeSeguridad.objetoEmbalado(paqueteLadrillos)
+	 paqueteLadrillos.cantidad(80)
+	 camion.hayAlgunoQuePesa(150)
+	 camion.tieneAlgoQuePesaEntre(50, 100)
+	 camion.cargar(bumblebee)
+	 camion.cargar(arena)	
+	 camion.cargar(embalajeSeguridad)
+	 camion.cargar(bateriaAntiaerea)
+		
+	 assert.equals(2410, camion.pesoTotal())
+	 assert.notThat(camion.excedidoDePeso()) 
+     assert.that(camion.puedeCircularEnRuta(2000))	
+	}
+}
+	
+	
+	
+	
+	
+  
+    
+    
+    
+    
+  
+    
+  
+
+
+
